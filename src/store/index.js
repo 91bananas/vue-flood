@@ -144,8 +144,10 @@ export default new Vuex.Store({
             this.dispatch('checkDoneColors', firstel.color);
         },
         moveMade({commit}, color) {
-            commit('MOVE', color);
-            this.dispatch('checkDoneColors', color);
+            if (this.getters.lastMove !== color) {
+                commit('MOVE', color);
+                this.dispatch('checkDoneColors', color);
+            }
         },
         checkDoneColors({commit}, color)  {
             let neighborsToUpdate = [];
@@ -196,6 +198,7 @@ export default new Vuex.Store({
     },
     getters: {
         maxMoves: (state) => (state.maxMoves),
+        lastMove: (state) => (state.lastMove),
         moveCount: (state) => (state.moveCount),
         colors: (state) => (state.colors),
         allColorsArray: (state) => (state.allColorsArray),
