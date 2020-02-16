@@ -1,4 +1,4 @@
-# demo
+# Vue and Vuex flood game
 
 ## Project setup
 ```
